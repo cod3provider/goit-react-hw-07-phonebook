@@ -1,16 +1,29 @@
-export const App = () => {
+import ContactForm from './ContactForm/ContactForm';
+import ContactList from './ContactList/ContactList';
+import ContactFilter from './ContactFilter/ContactFilter';
+import Wrap from './Wrap/Wrap';
+import { useSelector } from 'react-redux';
+import { getError, getLoading } from '../redux/contacts/contacts-selectors';
+
+const App = () => {
+  const isLoading = useSelector(getLoading);
+  const isError = useSelector(getError);
+
   return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101'
-      }}
-    >
-      React homework template
-    </div>
+    <Wrap>
+      <div>
+        <h1>Phonebook</h1>
+        <ContactForm />
+      </div>
+
+      <div>
+        <h2>Contacts</h2>
+        <ContactFilter />
+        {isLoading && !isError && <p>...Loading, wait</p>}
+        <ContactList />
+      </div>
+    </Wrap>
   );
 };
+
+export default App;
