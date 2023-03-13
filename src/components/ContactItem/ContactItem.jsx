@@ -11,6 +11,7 @@ const ContactItem = ({ id, name, number }) => {
     dispatch(fetchDeleteContact(id));
   };
 
+  console.log(name, number)
   return (
     <li key={id} className={s.item}>
       <p>{name}:</p>
